@@ -1,0 +1,18 @@
+{
+  "name": "vehicle-tracking-system-backend",
+  "version": "1.0.0",
+  "description": "This procject save user, driver and its locations",
+  "main": "app.js",
+  "scripts": {
+    "devStart": "nodemon app.js"
+  },
+  "author": "Abhishek",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

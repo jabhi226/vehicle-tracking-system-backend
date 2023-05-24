@@ -7,11 +7,11 @@ const DriverLocation = require('../collections/driverLocation')
 //get driver location by bus number
 driverLocationRouter.get('/by/busnumber/', async (req, res) => {
     try {
-        const users = await DriverLocation.findOne({busNumber: req.query.busNumber})
-        if (users == null) {
+        const latLong = await DriverLocation.findOne({busNumber: req.query.busNumber})
+        if (latLong == null) {
             res.json({status: "error", result: "Username or Password mismatch."})
         } else {
-            res.json({status: "ok", result: users})
+            res.json({status: "ok", result: latLong})
         }
     } catch (e) {
         console.error(e)
@@ -22,13 +22,17 @@ driverLocationRouter.get('/by/busnumber/', async (req, res) => {
 //upsert driver location by driver id
 driverLocationRouter.post('/', async (req, res) => {
     try {
-        const upserted = await DriverLocation.updateOne({id: req.body.id}, {
-            id: req.body.id,
+        const upserted = await DriverLocation.updateOne({busNumber: req.body.busNumber}, {
             busNumber: req.body.busNumber,
             latitude: req.body.latitude,
-            longitude: req.body.longitude
+            longitude: req.body.longitude,
+            timestamp: req.body.timestamp
         }, {upsert: true})
-        return res.json(upserted)
+        if (upserted == null) {
+            res.json({status: "error", result: "error."})
+        } else {
+            res.json({status: "ok", result: upserted})
+        }
     } catch (e) {
         console.error(e)
         res.status(500).json({error: e.message})

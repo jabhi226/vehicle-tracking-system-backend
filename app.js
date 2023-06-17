@@ -15,10 +15,13 @@ const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log("Connected To DB"))
 
-const driverRoutes = require('./routes/driverRoutes')
+const driverRoutes = require('./routes/driver')
 app.use('/driver', driverRoutes)
 
-const driverLocationRoutes = require('./routes/driverLocationRoutes')
+const driverLocationRoutes = require('./routes/driver_location')
 app.use('/driverLocation', driverLocationRoutes)
+
+const parentRoutes = require('./routes/parent')
+app.use('/parent', parentRoutes)
 
 app.listen(3001, () => console.log("Server Started."))

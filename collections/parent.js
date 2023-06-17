@@ -8,4 +8,4 @@ const schema = new mongoose.Schema({
     busNumber: String
 })
 
-module.exports = mongoose.model('Driver', schema)
+module.exports = mongoose.model('Parent', schema)

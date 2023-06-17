@@ -1,8 +1,7 @@
 const express = require('express')
 const driverLocationRouter = express.Router()
-const DriverLocation = require('../collections/driverLocation')
+const DriverLocation = require('../collections/driver_location')
 
-//route: http://localhost:3000/users/
 
 //get driver location by bus number
 driverLocationRouter.get('/by/busnumber/', async (req, res) => {
@@ -39,7 +38,6 @@ driverLocationRouter.post('/', async (req, res) => {
     }
 })
 
-
 driverLocationRouter.delete("/", async (req, res) => {
     try {
         const deletedUser = await DriverLocation.find({name: req.body.username});
@@ -50,13 +48,5 @@ driverLocationRouter.delete("/", async (req, res) => {
         res.status(500).json({error: e.message})
     }
 })
-
-// //get api wiht dynamic parameters
-// userRouter.get("/:userId", (req, res) => {
-//     console.log(req.params)
-//     var file = { user: 'Abhishek', id: `${req.params.userId}`, type: 'GET' }
-//     res.json(file)
-// })
-
 
 module.exports = driverLocationRouter

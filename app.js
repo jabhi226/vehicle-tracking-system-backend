@@ -18,7 +18,7 @@ db.once('open', () => console.log("Connected To DB"))
 const driverRoutes = require('./routes/driver')
 app.use('/driver', driverRoutes)
 
-const driverLocationRoutes = require('./routes/driver_location')
+const driverLocationRoutes = require('./routes/driverLocation')
 app.use('/driverLocation', driverLocationRoutes)
 
 const parentRoutes = require('./routes/parent')
